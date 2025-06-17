@@ -45,6 +45,20 @@ flutter:
     - images/bg_category.png
     - images/tas_kanken.png
     - images/bg_detailnotif.png
+    - images/tas_hermes.png
+    - images/iphone_16.png
+    - images/dokumen.png
+    - images/jam_rolex.png
+    - images/tumbler.png
+    - images/bakpia.png
+    - images/arai_helmet.png
+    - images/ysl_cushion.png
+    - images/labubu.png
+    - images/yeezy.png
+    - images/airpods_max.png
+
+
+
 
 flutter_icons:  # Letakkan di luar "flutter", dan di tingkat root
   android: true

@@ -68,7 +68,7 @@ class CatalogDetailScreen extends StatelessWidget {
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12),
-          child: Image.network(
+          child: Image.asset(
             item.imageUrl,
             fit: BoxFit.contain,
             errorBuilder: (context, error, stackTrace) {

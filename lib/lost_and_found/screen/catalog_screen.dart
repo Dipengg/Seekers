@@ -23,8 +23,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
           location: 'Tegalluar St',
           registrationNumber: 'T 1234',
           date: '27/5 , 1:38 PM',
-          imageUrl:
-              'https://cdn.builder.io/api/v1/image/assets/1825288418f94d298cd19cfb80ab8a08/f6263bb7909c8a242ec5d09963c726c449ad017e?placeholderIfAbsent=true',
+          imageUrl: 'images/tas_hermes.png',
           isClaimed: false,
         ),
         const CatalogItem(
@@ -34,8 +33,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
           location: 'Halim St',
           registrationNumber: 'T 1234',
           date: '27/5 , 1:38 PM',
-          imageUrl:
-              'https://cdn.builder.io/api/v1/image/assets/1825288418f94d298cd19cfb80ab8a08/6be882dfc09e8d65528477b4c079852ec85cfb3a?placeholderIfAbsent=true',
+          imageUrl: 'images/iphone_16.png',
           isClaimed: false,
         ),
         const CatalogItem(
@@ -45,19 +43,17 @@ class _CatalogScreenState extends State<CatalogScreen> {
           location: 'Tegalluar St',
           registrationNumber: 'T 1234',
           date: '27/5 , 1:38 PM',
-          imageUrl:
-              'https://cdn.builder.io/api/v1/image/assets/1825288418f94d298cd19cfb80ab8a08/fdbee9d6b6ff4c469afd94b907fb30993e38f774?placeholderIfAbsent=true',
+          imageUrl: 'images/dokumen.png',
           isClaimed: true,
         ),
         const CatalogItem(
           id: '4',
           title: 'Jam Tangan ROLEX',
-          category: 'Watch',
+          category: 'Accessories',
           location: 'Halim St',
           registrationNumber: 'T 1234',
           date: '27/5 , 1:38 PM',
-          imageUrl:
-              'https://cdn.builder.io/api/v1/image/assets/1825288418f94d298cd19cfb80ab8a08/3f25d202ed13ba34d7f8768c55e2645309d5ce94?placeholderIfAbsent=true',
+          imageUrl: 'images/jam_rolex.png',
           isClaimed: true,
         ),
         const CatalogItem(
@@ -67,19 +63,17 @@ class _CatalogScreenState extends State<CatalogScreen> {
           location: 'Tegalluar St',
           registrationNumber: 'T 1234',
           date: '27/5 , 1:38 PM',
-          imageUrl:
-              'https://cdn.builder.io/api/v1/image/assets/1825288418f94d298cd19cfb80ab8a08/f6b8da76491d73b1dc077a634fafeb9d02ccdaf2?placeholderIfAbsent=true',
+          imageUrl: 'images/tumbler.png',
           isClaimed: false,
         ),
         const CatalogItem(
           id: '6',
           title: 'Bakpia Tugu Jogja',
-          category: 'Food',
+          category: 'FNB',
           location: 'Tegalluar St',
           registrationNumber: 'T 1234',
           date: '27/5 , 1:38 PM',
-          imageUrl:
-              'https://cdn.builder.io/api/v1/image/assets/1825288418f94d298cd19cfb80ab8a08/79113f3e70bd09c5cabbb01abb94a7e1feb0ac1d?placeholderIfAbsent=true',
+          imageUrl: 'images/bakpia.png',
           isClaimed: false,
         ),
         const CatalogItem(
@@ -89,8 +83,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
           location: 'Tegalluar St',
           registrationNumber: 'T 1234',
           date: '27/5 , 1:38 PM',
-          imageUrl:
-              'https://cdn.builder.io/api/v1/image/assets/1825288418f94d298cd19cfb80ab8a08/5f7a7b06350f3c4c8f04a81f7fea6d5f43661e84?placeholderIfAbsent=true',
+          imageUrl: 'images/arai_helmet.png',
           isClaimed: false,
         ),
         const CatalogItem(
@@ -100,19 +93,17 @@ class _CatalogScreenState extends State<CatalogScreen> {
           location: 'Halim St',
           registrationNumber: 'T 1234',
           date: '27/5 , 1:38 PM',
-          imageUrl:
-              'https://cdn.builder.io/api/v1/image/assets/1825288418f94d298cd19cfb80ab8a08/9eb4a381b7f5927bb55c3078a463fe56e617b1f2?placeholderIfAbsent=true',
+          imageUrl: 'images/ysl_cushion.png',
           isClaimed: false,
         ),
         const CatalogItem(
           id: '9',
           title: 'Boneka LABUBU',
-          category: 'Kidstuff',
+          category: 'Kids Stuff',
           location: 'Tegalluar St',
           registrationNumber: 'T 1234',
           date: '27/5 , 1:38 PM',
-          imageUrl:
-              'https://cdn.builder.io/api/v1/image/assets/1825288418f94d298cd19cfb80ab8a08/dd935958e95010b2ea03fc75e971bd2853770f4b?placeholderIfAbsent=true',
+          imageUrl: 'images/labubu.png',
           isClaimed: true,
         ),
         const CatalogItem(
@@ -122,8 +113,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
           location: 'Tegalluar St',
           registrationNumber: 'T 1234',
           date: '16/10 , 1:27 PM',
-          imageUrl:
-              'https://cdn.builder.io/api/v1/image/assets/1825288418f94d298cd19cfb80ab8a08/db3ee6efcddf3ae4fa0d76b5b20a7496ab2f2b37?placeholderIfAbsent=true',
+          imageUrl: 'images/tas_kanken.png',
           isClaimed: false,
         ),
         const CatalogItem(
@@ -133,8 +123,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
           location: 'Halim St',
           registrationNumber: 'T 1234',
           date: '27/5 , 1:38 PM',
-          imageUrl:
-              'https://cdn.builder.io/api/v1/image/assets/1825288418f94d298cd19cfb80ab8a08/53b69bc43bb8b98ef5066facb3a4feaf1ee25267?placeholderIfAbsent=true',
+          imageUrl: 'images/yeezy.png',
           isClaimed: false,
         ),
         const CatalogItem(
@@ -144,15 +133,13 @@ class _CatalogScreenState extends State<CatalogScreen> {
           location: 'Halim St',
           registrationNumber: 'T 1234',
           date: '27/5 , 1:38 PM',
-          imageUrl:
-              'https://cdn.builder.io/api/v1/image/assets/1825288418f94d298cd19cfb80ab8a08/2a3fc028de4a4f96eac7f7b483d225a3996247bf?placeholderIfAbsent=true',
+          imageUrl: 'images/airpods_max.png',
           isClaimed: false,
         ),
       ];
 
   List<CatalogItem> get _filteredItems {
     if (_currentFilters == null) return _catalogItems;
-
     return _catalogItems.where((item) {
       if (_currentFilters!['category'] != 'ALL') {
         if (!item.category
@@ -161,7 +148,6 @@ class _CatalogScreenState extends State<CatalogScreen> {
           return false;
         }
       }
-
       if (_currentFilters!['status'] != 'ALL') {
         if (_currentFilters!['status'] == 'Claimed' && !item.isClaimed) {
           return false;
@@ -170,7 +156,6 @@ class _CatalogScreenState extends State<CatalogScreen> {
           return false;
         }
       }
-
       if (_currentFilters!['location'] != 'ALL') {
         if (!item.location
             .toLowerCase()
@@ -178,7 +163,6 @@ class _CatalogScreenState extends State<CatalogScreen> {
           return false;
         }
       }
-
       return true;
     }).toList();
   }
@@ -200,7 +184,6 @@ class _CatalogScreenState extends State<CatalogScreen> {
       backgroundColor: Colors.transparent,
       builder: (context) => const FilterScreen(),
     );
-
     if (result != null) {
       setState(() {
         _currentFilters = result;
@@ -222,9 +205,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ClaimFormScreen(
-            item: item,
-          ),
+          builder: (context) => ClaimFormScreen(item: item),
         ),
       );
     } else {
@@ -254,7 +235,6 @@ class _CatalogScreenState extends State<CatalogScreen> {
                   children: _itemRows.asMap().entries.map((entry) {
                     int rowIndex = entry.key;
                     List<CatalogItem> rowItems = entry.value;
-
                     return Column(
                       children: [
                         if (rowIndex > 0) const SizedBox(height: 20),
@@ -264,16 +244,13 @@ class _CatalogScreenState extends State<CatalogScreen> {
                             children: rowItems.asMap().entries.map((itemEntry) {
                               int itemIndex = itemEntry.key;
                               CatalogItem item = itemEntry.value;
-
                               return Row(
                                 children: [
                                   if (itemIndex > 0) const SizedBox(width: 12),
                                   CatalogItemCard(
                                     item: item,
-                                    onTap: () => _handleItemTap(
-                                        item), // Navigasi ke detail
-                                    onClaimPressed: () =>
-                                        _handleClaimPressed(item),
+                                    onTap: () => _handleItemTap(item),
+                                    onClaimPressed: () => _handleClaimPressed(item),
                                   ),
                                 ],
                               );
@@ -300,11 +277,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
         children: [
           GestureDetector(
             onTap: () => Navigator.pop(context),
-            child: const Icon(
-              Icons.arrow_back_ios,
-              size: 20,
-              color: Color(0xFF7F0408),
-            ),
+            child: const Icon(Icons.arrow_back_ios, size: 20, color: Color(0xFF7F0408)),
           ),
           const Text(
             'Catalog',
@@ -319,11 +292,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
             onTap: () => _showFilterScreen(context),
             child: Stack(
               children: [
-                const Icon(
-                  Icons.tune,
-                  size: 20,
-                  color: Color(0xFF7F0408),
-                ),
+                const Icon(Icons.tune, size: 20, color: Color(0xFF7F0408)),
                 if (_currentFilters != null)
                   Positioned(
                     right: 0,
@@ -352,39 +321,21 @@ class _CatalogScreenState extends State<CatalogScreen> {
       decoration: BoxDecoration(
         color: const Color(0xFF7F0408).withOpacity(0.1),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: const Color(0xFF7F0408).withOpacity(0.3),
-        ),
+        border: Border.all(color: const Color(0xFF7F0408).withOpacity(0.3)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(
-            Icons.filter_list,
-            size: 14,
-            color: Color(0xFF7F0408),
-          ),
+          const Icon(Icons.filter_list, size: 14, color: Color(0xFF7F0408)),
           const SizedBox(width: 4),
           Text(
             'Filters Applied (${_filteredItems.length} items)',
-            style: const TextStyle(
-              fontSize: 12,
-              color: Color(0xFF7F0408),
-              fontWeight: FontWeight.w500,
-            ),
+            style: const TextStyle(fontSize: 12, color: Color(0xFF7F0408), fontWeight: FontWeight.w500),
           ),
           const SizedBox(width: 8),
           GestureDetector(
-            onTap: () {
-              setState(() {
-                _currentFilters = null;
-              });
-            },
-            child: const Icon(
-              Icons.close,
-              size: 14,
-              color: Color(0xFF7F0408),
-            ),
+            onTap: () => setState(() => _currentFilters = null),
+            child: const Icon(Icons.close, size: 14, color: Color(0xFF7F0408)),
           ),
         ],
       ),

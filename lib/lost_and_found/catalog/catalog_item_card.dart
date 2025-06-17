@@ -75,7 +75,7 @@ class CatalogItemCard extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
-        child: Image.network(
+        child: Image.asset(
           item.imageUrl,
           fit: BoxFit.cover,
           errorBuilder: (context, error, stackTrace) {
