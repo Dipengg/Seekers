@@ -5,7 +5,7 @@ class CatalogItem {
   final String location;
   final String registrationNumber;
   final String date;
-  final String imageUrl; // Lokal: contoh 'assets/images/iphone_16.jpg'
+  final String imageUrl; 
   final bool isClaimed;
 
   const CatalogItem({
@@ -62,7 +62,7 @@ class CatalogItem {
       location: json['location'] ?? '',
       registrationNumber: json['registrationNumber'] ?? '',
       date: json['date'] ?? '',
-      imageUrl: json['imageUrl'] ?? '', // Harus path lokal kalau dari file lokal
+      imageUrl: json['imageUrl'] ?? '',
       isClaimed: json['isClaimed'] ?? false,
     );
   }

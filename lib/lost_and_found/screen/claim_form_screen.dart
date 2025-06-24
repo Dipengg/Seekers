@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:seekers/lost_and_found/catalog/catalog_item.dart';
 import 'package:seekers/lost_and_found/screen/home_screen.dart';
 
@@ -86,17 +88,27 @@ class ClaimForm extends StatefulWidget {
 
 class _ClaimFormState extends State<ClaimForm> {
   bool isAgreed = false;
+  File? idCardImage;
+  File? ticketImage;
+  File? ownershipImage;
+  final ImagePicker picker = ImagePicker();
+
+  Future<void> pickImage(Function(File) onImagePicked) async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      onImagePicked(File(pickedFile.path));
+    }
+  }
 
   void _showSuccessDialog() {
     showDialog(
       context: context,
       barrierDismissible: false,
-      barrierColor: Colors.black.withOpacity(0.5), // Atur transparansi overlay
+      barrierColor: Colors.black.withOpacity(0.5),
       builder: (context) {
         return Dialog(
           backgroundColor: Colors.white,
-          surfaceTintColor:
-              Colors.transparent, // Hilangkan tint default Material 3
+          surfaceTintColor: Colors.transparent,
           shadowColor: Colors.black.withOpacity(0.2),
           elevation: 8,
           shape: RoundedRectangleBorder(
@@ -104,7 +116,7 @@ class _ClaimFormState extends State<ClaimForm> {
           ),
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.white, // Double ensure background putih
+              color: Colors.white,
               borderRadius: BorderRadius.circular(24),
             ),
             padding: const EdgeInsets.all(24),
@@ -183,12 +195,11 @@ class _ClaimFormState extends State<ClaimForm> {
   void _showConfirmationDialog() {
     showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.5), // Atur transparansi overlay
+      barrierColor: Colors.black.withOpacity(0.5),
       builder: (context) {
         return Dialog(
           backgroundColor: Colors.white,
-          surfaceTintColor:
-              Colors.transparent, // Hilangkan tint default Material 3
+          surfaceTintColor: Colors.transparent,
           shadowColor: Colors.black.withOpacity(0.2),
           elevation: 8,
           shape: RoundedRectangleBorder(
@@ -196,7 +207,7 @@ class _ClaimFormState extends State<ClaimForm> {
           ),
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.white, // Double ensure background putih
+              color: Colors.white,
               borderRadius: BorderRadius.circular(24),
             ),
             padding: const EdgeInsets.all(24),
@@ -330,7 +341,9 @@ class _ClaimFormState extends State<ClaimForm> {
     );
   }
 
-  Widget buildUploadField(String label, {String? hint}) {
+  Widget buildUploadField(
+      String label, File? file, Function(File) onImagePicked,
+      {String? hint}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -343,24 +356,32 @@ class _ClaimFormState extends State<ClaimForm> {
           ),
         ),
         const SizedBox(height: 4),
-        Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Colors.grey[100],
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Row(
-            children: [
-              const Icon(Icons.cloud_upload,
-                  color: Color(0xFF7F0408), size: 20),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text(
-                  hint ?? 'Upload your $label',
-                  style: const TextStyle(color: Colors.grey, fontSize: 13),
+        InkWell(
+          onTap: () => pickImage(onImagePicked),
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.grey[100],
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Row(
+              children: [
+                const Icon(Icons.cloud_upload,
+                    color: Color(0xFF7F0408), size: 20),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    file != null
+                        ? 'File Selected: ${file.path.split('/').last}'
+                        : (hint ?? 'Upload your $label'),
+                    style: TextStyle(
+                      color: file != null ? Colors.black87 : Colors.grey,
+                      fontSize: 13,
+                    ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         const SizedBox(height: 12),
@@ -375,12 +396,22 @@ class _ClaimFormState extends State<ClaimForm> {
       children: [
         buildTextField("Name"),
         buildTextField("Phone Number", isNumber: true),
-        buildUploadField("ID Card"),
-        buildUploadField("Train Ticket Proof",
-            hint: "If you lose your ticket, upload proof of purchase."),
+        buildUploadField("ID Card", idCardImage, (file) {
+          setState(() {
+            idCardImage = file;
+          });
+        }),
+        buildUploadField("Train Ticket Proof", ticketImage, (file) {
+          setState(() {
+            ticketImage = file;
+          });
+        }, hint: "If you lose your ticket, upload proof of purchase."),
         buildTextField("Item Description", maxLines: 2),
-        buildUploadField("Proof of Ownership",
-            hint: "Upload a picture of the lost item"),
+        buildUploadField("Proof of Ownership", ownershipImage, (file) {
+          setState(() {
+            ownershipImage = file;
+          });
+        }, hint: "Upload a picture of the lost item"),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

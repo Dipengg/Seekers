@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class ChatInput extends StatefulWidget {
   const ChatInput({super.key});
@@ -9,7 +11,40 @@ class ChatInput extends StatefulWidget {
 }
 
 class _ChatInputState extends State<ChatInput> {
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> _pickFromCamera() async {
+    var cameraStatus = await Permission.camera.status;
+    if (!cameraStatus.isGranted) {
+      cameraStatus = await Permission.camera.request();
+    }
+
+    if (cameraStatus.isGranted) {
+      final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+      if (photo != null) {
+        print('Kamera: ${photo.path}');
+      }
+    } else {
+      print('Izin kamera ditolak');
+    }
+  }
+
+  Future<void> _pickFromGallery() async {
+    var storageStatus = await Permission.storage.status;
+    if (!storageStatus.isGranted) {
+      storageStatus = await Permission.storage.request();
+    }
+
+    if (storageStatus.isGranted) {
+      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+      if (image != null) {
+        print('Galeri: ${image.path}');
+      }
+    } else {
+      print('Izin storage ditolak');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +61,14 @@ class _ChatInputState extends State<ChatInput> {
               Icons.camera_alt,
               color: Color(0xFF7F0408),
             ),
-            onPressed: () {},
+            onPressed: _pickFromCamera,
           ),
           IconButton(
             icon: const Icon(
               Icons.photo_library,
               color: Color(0xFF7F0408),
             ),
-            onPressed: () {},
+            onPressed: _pickFromGallery,
           ),
           Expanded(
             child: Container(
