@@ -6,6 +6,8 @@ Widget buildSearchBar({
   required Function(String) onChanged,
   required Function(String) onSubmitted,
   required VoidCallback onClear,
+  required VoidCallback onClearAll,
+  required bool showClearAll,
 }) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 21),
@@ -15,13 +17,13 @@ Widget buildSearchBar({
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(25),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withOpacity(0.08),
                   blurRadius: 8,
-                  offset: const Offset(0, 4),
-                  spreadRadius: 2,
+                  offset: const Offset(0, 2),
+                  spreadRadius: 0,
                 ),
               ],
             ),
@@ -39,38 +41,42 @@ Widget buildSearchBar({
                 ),
                 suffixIcon: Icon(
                   Icons.search,
-                  color: Colors.grey,
+                  color: Color(0xFF7F0408),
+                  size: 22,
                 ),
                 contentPadding:
-                    EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                    EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                 border: InputBorder.none,
               ),
             ),
           ),
         ),
-        const SizedBox(width: 15),
-        GestureDetector(
-          onTap: onClear,
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 6,
-                  offset: const Offset(0, 3),
-                ),
-              ],
-            ),
-            child: const Icon(
-              Icons.clear,
-              color: Color(0xFF7F0408),
-              size: 24,
+        if (showClearAll) ...[
+          const SizedBox(width: 12),
+          GestureDetector(
+            onTap: onClearAll,
+            child: Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.08),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: const Icon(
+                Icons.delete_outline,
+                color: Color(0xFFD32F2F),
+                size: 22,
+              ),
             ),
           ),
-        ),
+        ],
       ],
     ),
   );
@@ -132,8 +138,8 @@ Widget _buildItemCard(
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 8,
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 4,
             offset: const Offset(0, 2),
           ),
         ],
@@ -277,7 +283,7 @@ Widget buildRecentSearches({
   final filtered = controllerText.isEmpty
       ? recentSearches
       : recentSearches
-          .where((s) => s.toLowerCase() == controllerText.toLowerCase())
+          .where((s) => s.toLowerCase().contains(controllerText.toLowerCase()))
           .toList();
 
   if (filtered.isEmpty) {
@@ -300,64 +306,73 @@ Widget buildRecentSearches({
     );
   }
 
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 21),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 21),
+        child: Text(
           'Recent Searches',
           style: TextStyle(
             color: Color(0xFF7F0408),
             fontSize: 16,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w600,
             fontFamily: 'Open Sans',
-            letterSpacing: 0.3,
           ),
         ),
-        const SizedBox(height: 26),
-        Expanded(
-          child: ListView.builder(
-            itemCount: filtered.length,
-            itemBuilder: (context, index) {
-              final search = filtered[index];
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: GestureDetector(
-                  onTap: () => onTap(search),
+      ),
+      const SizedBox(height: 16),
+      Expanded(
+        child: ListView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 21),
+          itemCount: filtered.length,
+          itemBuilder: (context, index) {
+            final search = filtered[index];
+            return Container(
+              margin: const EdgeInsets.only(bottom: 8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 2,
+                    offset: const Offset(0, 1),
+                  ),
+                ],
+              ),
+              child: InkWell(
+                onTap: () => onTap(search),
+                borderRadius: BorderRadius.circular(8),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          const Icon(Icons.access_time,
-                              color: Colors.grey, size: 24),
-                          const SizedBox(width: 10),
-                          Text(
-                            search,
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'Open Sans',
-                              letterSpacing: 0.3,
-                            ),
+                      Expanded(
+                        child: Text(
+                          search,
+                          style: const TextStyle(
+                            color: Color(0xFF333333),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Open Sans',
                           ),
-                        ],
+                        ),
                       ),
-                      GestureDetector(
-                        onTap: () => onRemove(search),
-                        child: const Icon(Icons.close,
-                            color: Colors.grey, size: 24),
+                      const Icon(
+                        Icons.arrow_forward_ios,
+                        color: Color(0xFF999999),
+                        size: 16,
                       ),
                     ],
                   ),
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
-      ],
-    ),
+      ),
+    ],
   );
 }

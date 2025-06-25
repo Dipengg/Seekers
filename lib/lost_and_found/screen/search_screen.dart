@@ -18,8 +18,14 @@ class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
   List<CatalogItem> _searchResults = [];
   bool _isSearching = false;
+  bool _showResults = false;
   bool _hasSearched = false;
-  final List<String> _recentSearches = [];
+  final List<String> _recentSearches = [
+    'Tas Kanken',
+    'Boneka Labubu',
+    'HP',
+    'Tas Eiger'
+  ];
 
   List<CatalogItem> get _catalogItems => [
         const CatalogItem(
@@ -155,6 +161,7 @@ class _SearchScreenState extends State<SearchScreen> {
         setState(() {
           _searchResults = [];
           _isSearching = false;
+          _showResults = false;
           _hasSearched = false;
         });
         return;
@@ -170,33 +177,33 @@ class _SearchScreenState extends State<SearchScreen> {
       setState(() {
         _searchResults = results;
         _isSearching = false;
+        _showResults = true;
       });
 
-      _addToRecentSearches(query.trim());
+      if (!_recentSearches.contains(query) && query.isNotEmpty) {
+        setState(() {
+          _recentSearches.insert(0, query);
+          if (_recentSearches.length > 10) {
+            _recentSearches.removeLast();
+          }
+        });
+      }
     });
-  }
-
-  void _addToRecentSearches(String query) {
-    if (query.isNotEmpty) {
-      setState(() {
-        _recentSearches
-            .removeWhere((item) => item.toLowerCase() == query.toLowerCase());
-
-        _recentSearches.insert(0, query);
-
-        if (_recentSearches.length > 10) {
-          _recentSearches.removeLast();
-        }
-      });
-    }
   }
 
   void _clearSearch() {
     _searchController.clear();
     setState(() {
       _searchResults = [];
+      _showResults = false;
       _isSearching = false;
       _hasSearched = false;
+    });
+  }
+
+  void _clearAllRecentSearches() {
+    setState(() {
+      _recentSearches.clear();
     });
   }
 
@@ -244,7 +251,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF8F8F8), // Background abu-abu terang
       body: SafeArea(
         child: Column(
           children: [
@@ -254,6 +261,8 @@ class _SearchScreenState extends State<SearchScreen> {
               onChanged: _performSearch,
               onSubmitted: _performSearch,
               onClear: _clearSearch,
+              onClearAll: _clearAllRecentSearches,
+              showClearAll: !_hasSearched && _recentSearches.isNotEmpty,
             ),
             const SizedBox(height: 21),
             Expanded(
