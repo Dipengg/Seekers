@@ -14,6 +14,12 @@ class _ChatMessageState extends State<ChatMessage> {
   bool showAdminResponse = false;
   bool showLostItemMessage = false;
   bool showLostItemForm = false;
+  bool showClaimHowToMessage = false;
+  bool showClaimHowToResponse = false;
+  bool showClaimStatusMessage = false;
+  bool showClaimStatusResponse = false;
+  bool showItemFoundMessage = false;
+  bool showItemFoundResponse = false;
 
   void _onCustomerServiceTap() {
     setState(() {
@@ -46,6 +52,48 @@ class _ChatMessageState extends State<ChatMessage> {
       if (mounted) {
         setState(() {
           showLostItemForm = true;
+        });
+      }
+    });
+  }
+
+  void _onClaimHowToTap() {
+    setState(() {
+      showClaimHowToMessage = true;
+    });
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      if (mounted) {
+        setState(() {
+          showClaimHowToResponse = true;
+        });
+      }
+    });
+  }
+
+  void _onClaimStatusTap() {
+    setState(() {
+      showClaimStatusMessage = true;
+    });
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      if (mounted) {
+        setState(() {
+          showClaimStatusResponse = true;
+        });
+      }
+    });
+  }
+
+  void _onItemFoundTap() {
+    setState(() {
+      showItemFoundMessage = true;
+    });
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      if (mounted) {
+        setState(() {
+          showItemFoundResponse = true;
         });
       }
     });
@@ -114,11 +162,20 @@ class _ChatMessageState extends State<ChatMessage> {
                 child: _buildTopicItem('Kehilangan barang? Laporkan di sini'),
               ),
               _buildDivider(),
-              _buildTopicItem('Bagaimana cara klaim barang ditemukan?'),
+              GestureDetector(
+                onTap: _onClaimHowToTap,
+                child: _buildTopicItem('Bagaimana cara klaim barang ditemukan?'),
+              ),
               _buildDivider(),
-              _buildTopicItem('Apa status klaim barang saya?'),
+              GestureDetector(
+                onTap: _onClaimStatusTap,
+                child: _buildTopicItem('Apa status klaim barang saya?'),
+              ),
               _buildDivider(),
-              _buildTopicItem('Apakah barang saya sudah ditemukan?'),
+              GestureDetector(
+                onTap: _onItemFoundTap,
+                child: _buildTopicItem('Apakah barang saya sudah ditemukan?'),
+              ),
               _buildDivider(),
               GestureDetector(
                 onTap: _onCustomerServiceTap,
@@ -184,6 +241,181 @@ class _ChatMessageState extends State<ChatMessage> {
               'Nama barang :\n'
               'Ciri ciri barang :\n'
               'Kronologi kehilangan :',
+              style: GoogleFonts.poppins(
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+                height: 1.6,
+              ),
+            ),
+          ),
+        ],
+        if (showClaimHowToMessage) ...[
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(left: 50, right: 13),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: const BoxDecoration(
+                  color: Color(0xFF7F0408),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(17),
+                    bottomLeft: Radius.circular(17),
+                    bottomRight: Radius.circular(17),
+                  ),
+                ),
+                child: Text(
+                  'Bagaimana cara klaim barang ditemukan?',
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+        if (showClaimHowToResponse) ...[
+          const SizedBox(height: 16),
+          Container(
+            margin: const EdgeInsets.only(left: 13, right: 50),
+            padding: const EdgeInsets.all(12),
+            decoration: const BoxDecoration(
+              color: Color(0xFF7F0408),
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(17),
+                bottomLeft: Radius.circular(17),
+                bottomRight: Radius.circular(17),
+              ),
+            ),
+            child: Text(
+              'Untuk klaim barang ditemukan:\n'
+              '1. Buka aplikasi Seekers\n'
+              '2. Masuk ke menu "Katalog Barang"\n'
+              '3. Pilih barang yang sesuai\n'
+              '4. Isi form klaim barang untuk verifikasi kepemilikan\n'
+              '5. Upload bukti kepemilikan\n'
+              '6. Tunggu konfirmasi dari tim kami',
+              style: GoogleFonts.poppins(
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+                height: 1.6,
+              ),
+            ),
+          ),
+        ],
+        if (showClaimStatusMessage) ...[
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(left: 70, right: 13),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: const BoxDecoration(
+                  color: Color(0xFF7F0408),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(17),
+                    bottomLeft: Radius.circular(17),
+                    bottomRight: Radius.circular(17),
+                  ),
+                ),
+                child: Text(
+                  'Apa status klaim barang saya?',
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+        if (showClaimStatusResponse) ...[
+          const SizedBox(height: 16),
+          Container(
+            margin: const EdgeInsets.only(left: 13, right: 70),
+            padding: const EdgeInsets.all(12),
+            decoration: const BoxDecoration(
+              color: Color(0xFF7F0408),
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(17),
+                bottomLeft: Radius.circular(17),
+                bottomRight: Radius.circular(17),
+              ),
+            ),
+            child: Text(
+              'Status klaim Anda saat ini:\n'
+              'Klaim ID: #CL240707001\n'
+              'Status: Sedang diverifikasi\n'
+              'Tanggal pengajuan: 21 Mei 2025\n'
+              'Estimasi selesai: 1-2 hari kerja\n\n'
+              'Kami akan memberikan notifikasi jika ada update status.',
+              style: GoogleFonts.poppins(
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+                height: 1.6,
+              ),
+            ),
+          ),
+        ],
+        if (showItemFoundMessage) ...[
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(left: 60, right: 13),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: const BoxDecoration(
+                  color: Color(0xFF7F0408),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(17),
+                    bottomLeft: Radius.circular(17),
+                    bottomRight: Radius.circular(17),
+                  ),
+                ),
+                child: Text(
+                  'Apakah barang saya sudah ditemukan?',
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+        if (showItemFoundResponse) ...[
+          const SizedBox(height: 16),
+          Container(
+            margin: const EdgeInsets.only(left: 13, right: 60),
+            padding: const EdgeInsets.all(12),
+            decoration: const BoxDecoration(
+              color: Color(0xFF7F0408),
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(17),
+                bottomLeft: Radius.circular(17),
+                bottomRight: Radius.circular(17),
+              ),
+            ),
+            child: Text(
+              'Berdasarkan laporan kehilangan Anda:\n'
+              'Laporan ID: #LP240707001\n'
+              'Barang: Tas ransel hitam\n'
+              'Status: Belum ditemukan\n'
+              'Tanggal laporan: 27 Juni 2025\n\n'
+              'Tim kami masih terus mencari. Kami akan segera menghubungi Anda jika ada kabar.',
               style: GoogleFonts.poppins(
                 fontSize: 13,
                 fontWeight: FontWeight.w500,

@@ -40,7 +40,6 @@ class ChatScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Input Chat
                 ChatInput(),
               ],
             ),
