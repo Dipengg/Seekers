@@ -148,7 +148,8 @@ class _SearchScreenState extends State<SearchScreen> {
     }
   }
 
-  void _performSearch(String query) {
+  // Fungsi untuk melakukan pencarian real-time (tanpa menambah ke recent searches)
+  void _performRealTimeSearch(String query) {
     setState(() {
       _isSearching = true;
       _hasSearched = true;
@@ -179,16 +180,26 @@ class _SearchScreenState extends State<SearchScreen> {
         _isSearching = false;
         _showResults = true;
       });
-
-      if (!_recentSearches.contains(query) && query.isNotEmpty) {
-        setState(() {
-          _recentSearches.insert(0, query);
-          if (_recentSearches.length > 10) {
-            _recentSearches.removeLast();
-          }
-        });
-      }
     });
+  }
+
+  // Fungsi untuk menambahkan ke recent searches (hanya ketika user submit)
+  void _addToRecentSearches(String query) {
+    final trimmedQuery = query.trim();
+    if (trimmedQuery.isNotEmpty && !_recentSearches.contains(trimmedQuery)) {
+      setState(() {
+        _recentSearches.insert(0, trimmedQuery);
+        if (_recentSearches.length > 10) {
+          _recentSearches.removeLast();
+        }
+      });
+    }
+  }
+
+  // Fungsi untuk melakukan pencarian ketika user submit (Enter atau tap search button)
+  void _performSearch(String query) {
+    _performRealTimeSearch(query);
+    _addToRecentSearches(query);
   }
 
   void _clearSearch() {
@@ -258,7 +269,9 @@ class _SearchScreenState extends State<SearchScreen> {
             const SizedBox(height: 20),
             buildSearchBar(
               controller: _searchController,
-              onChanged: _performSearch,
+              // Gunakan _performRealTimeSearch untuk onChanged (real-time search)
+              onChanged: _performRealTimeSearch,
+              // Gunakan _performSearch untuk onSubmitted (menambah ke recent searches)
               onSubmitted: _performSearch,
               onClear: _clearSearch,
               onClearAll: _clearAllRecentSearches,
