@@ -23,8 +23,8 @@ class _SearchScreenState extends State<SearchScreen> {
   final List<String> _recentSearches = [
     'Tas Kanken',
     'Boneka Labubu',
-    'HP',
-    'Tas Eiger'
+    'Arai Helmet',
+    'Tumbler Corkcicle'
   ];
 
   List<CatalogItem> get _catalogItems => [
@@ -251,7 +251,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F8F8), // Background abu-abu terang
+      backgroundColor: const Color(0xFFF8F8F8),
       body: SafeArea(
         child: Column(
           children: [

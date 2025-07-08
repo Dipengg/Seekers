@@ -71,7 +71,7 @@ Widget buildSearchBar({
               ),
               child: const Icon(
                 Icons.delete_outline,
-                color: Color(0xFFD32F2F),
+                color: Color(0xFF7F0408),
                 size: 22,
               ),
             ),
@@ -293,86 +293,70 @@ Widget buildRecentSearches({
         children: [
           Icon(Icons.history, size: 64, color: Colors.grey),
           SizedBox(height: 16),
-          Text('No recent searches',
-              style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.grey,
-                  fontWeight: FontWeight.w500)),
+          Text(
+            'No recent searches',
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.grey,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
           SizedBox(height: 8),
-          Text('Your search history will appear here',
-              style: TextStyle(fontSize: 14, color: Colors.grey)),
+          Text(
+            'Your search history will appear here',
+            style: TextStyle(fontSize: 14, color: Colors.grey),
+          ),
         ],
       ),
     );
   }
 
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 21),
-        child: Text(
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 21),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
           'Recent Searches',
           style: TextStyle(
             color: Color(0xFF7F0408),
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            fontFamily: 'Open Sans',
           ),
         ),
-      ),
-      const SizedBox(height: 16),
-      Expanded(
-        child: ListView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 21),
-          itemCount: filtered.length,
-          itemBuilder: (context, index) {
-            final search = filtered[index];
-            return Container(
-              margin: const EdgeInsets.only(bottom: 8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
-                    blurRadius: 2,
-                    offset: const Offset(0, 1),
-                  ),
-                ],
-              ),
-              child: InkWell(
+        const SizedBox(height: 12),
+        Expanded(
+          child: ListView.separated(
+            itemCount: filtered.length,
+            separatorBuilder: (_, __) => const SizedBox(height: 8),
+            itemBuilder: (context, index) {
+              final search = filtered[index];
+              return GestureDetector(
                 onTap: () => onTap(search),
-                borderRadius: BorderRadius.circular(8),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          search,
-                          style: const TextStyle(
-                            color: Color(0xFF333333),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'Open Sans',
-                          ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        search,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
                         ),
                       ),
-                      const Icon(
-                        Icons.arrow_forward_ios,
-                        color: Color(0xFF999999),
-                        size: 16,
-                      ),
-                    ],
-                  ),
+                    ),
+                    const Icon(
+                      Icons.north_west,
+                      size: 16,
+                      color: Colors.black54,
+                    ),
+                  ],
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
-      ),
-    ],
+      ],
+    ),
   );
 }

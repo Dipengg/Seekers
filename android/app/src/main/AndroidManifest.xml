@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <!-- Optional untuk Android 13 ke atas (tidak dibutuhkan di Oreo) -->
     <!-- <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/> -->
