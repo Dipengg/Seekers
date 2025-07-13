@@ -5,8 +5,8 @@ import 'package:seekers/lost_and_found/auth/sign_up.dart';
 
 class DummyUsers {
   static final Map<String, String> user = {
-    'email': 'admin@seekers.com',
-    'password': 'admin123',
+    'email': 'user@seekers.com',
+    'password': 'user12345',
     'name': 'Liona Lee'
   };
 
